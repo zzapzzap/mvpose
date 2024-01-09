@@ -14,8 +14,7 @@ logger = logging.getLogger ( __name__ )
 coloredlogs.install ( level='DEBUG', logger=logger )
 
 from src.models.model_config import model_cfg
-from tqdm import tqdm
-from torch.utils.data import DataLoader, Subset
+from torch.utils.data import DataLoader
 from src.m_utils.base_dataset import BaseDataset, PreprocessedDataset
 from src.models.estimate3d import MultiEstimator
 from src.m_utils.evaluate import numpify
@@ -24,7 +23,7 @@ from src.m_utils.mem_dataset import MemDataset
 
 def export(model, loader, is_info_dicts=False, show=False):
     pose_list = list ()
-    for img_id, imgs in enumerate ( tqdm ( loader ) ):
+    for img_id, imgs in enumerate (  loader  ):
         try:
             pass
         except Exception as e:
