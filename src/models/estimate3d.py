@@ -37,11 +37,20 @@ class MultiEstimator ( object ):
         self.dataset = None
 
     def predict(self, imgs, camera_parameter, template_name='Shelf', show=False, plt_id=0):
+        stime = time.time()
         info_dict = self._infer_single2d ( imgs )
+        print("2D time", time.time() - stime)
+
+        stime = time.time()
         self.dataset = MemDataset ( info_dict=info_dict, camera_parameter=camera_parameter,
                                     template_name=template_name )
-        return self._estimate3d ( 0, show=show, plt_id=plt_id )
+        print("DS time", time.time() - stime)
 
+        stime = time.time()
+        out = self._estimate3d ( 0, show=show, plt_id=plt_id )
+        print("3D time", time.time() - stime)
+        return out
+    
     def _infer_single2d(self, imgs, img_id=0, dir='/home/jiangwen/tmp/Multi'):
         info_dict = dict ()
         for cam_id, img in enumerate ( imgs ):
