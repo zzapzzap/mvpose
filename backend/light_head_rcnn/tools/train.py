@@ -65,7 +65,7 @@ def train(args):
 
         tfconfig = tf.ConfigProto(
             allow_soft_placement=True, log_device_placement=False)
-        tfconfig.gpu_options.allow_growth = True
+        tfconfig.gpu_options.allow_growth = False
         sess = tf.Session(config=tfconfig)
         tf.set_random_seed(cfg.rng_seed)
 
