@@ -203,7 +203,7 @@ class Trainer(Base):
         tower_grads = []
         with tf.variable_scope(tf.get_variable_scope()):
             for i in range(self.cfg.nr_gpus):
-                with tf.device('/gpu:%d' % i):
+                with tf.device('/CPU:%d' % i):
                     with tf.name_scope('tower_%d' % i) as name_scope:
                         # Force all Variables to reside on the CPU.
                         with slim.arg_scope([slim.model_variable, slim.variable], device='/device:CPU:0'):
@@ -381,7 +381,7 @@ class Tester(Base):
 
         with tf.variable_scope(tf.get_variable_scope()):
             for i in range(self.cfg.nr_gpus):
-                with tf.device('/gpu:%d' % i):
+                with tf.device('/CPU:%d' % i):
                     with tf.name_scope('tower_%d' % i) as name_scope:
                         with slim.arg_scope([slim.model_variable, slim.variable], device='/device:CPU:0'):
                             self.net.make_network(is_train=False)

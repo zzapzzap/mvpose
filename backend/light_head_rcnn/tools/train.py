@@ -81,7 +81,7 @@ def train(args):
         put_op_list = []
         get_op_list = []
         for i in range(num_gpu):
-            with tf.device("/GPU:%s" % i):
+            with tf.device("/CPU:%s" % i):
                 area = tf.contrib.staging.StagingArea(
                     dtypes=[tf.float32 for _ in range(len(inputs_list[0]))])
                 put_op_list.append(area.put(inputs_list[i]))
@@ -99,7 +99,7 @@ def train(args):
 
         with tf.variable_scope(tf.get_variable_scope()):
             for i in range(num_gpu):
-                with tf.device('/gpu:%d' % i):
+                with tf.device('/CPU:%d' % i):
                     with tf.name_scope('tower_%d' % i):
                         with slim.arg_scope(
                                 [slim.model_variable, slim.variable],
