@@ -12,6 +12,6 @@ coloredlogs==10.0
 scipy==1.2.1
 setproctitle==1.1.10
 tensorflow==1.9.0
-matplotlib==2.0.2
+# matplotlib==2.0.2
 visdom==0.1.8.8
 Cython==0.29.6
