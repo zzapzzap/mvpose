@@ -14,5 +14,5 @@ setproctitle==1.1.10
 tensorflow==1.9.0
 # matplotlib==2.0.2
 visdom==0.1.8.8
-Cython==1.1.0
+Cython
 Ipython==7.7.0
